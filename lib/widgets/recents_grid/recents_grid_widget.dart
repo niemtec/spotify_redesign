@@ -1,31 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:spotify_redesign/widgets/album_art_widget.dart';
 
-class RecentsGrid extends StatelessWidget {
-  const RecentsGrid({super.key});
+class RecentsGridWidget extends StatelessWidget {
+  const RecentsGridWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 500,
-      child: GridView.builder(
-        shrinkWrap: true,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          childAspectRatio: 3,
-          crossAxisCount: 2,
-          crossAxisSpacing: 10.0,
-          mainAxisSpacing: 10.0,
-        ),
-        physics: const NeverScrollableScrollPhysics(),
-        itemBuilder: (context, index) {
-          return _gridItem(context);
-        },
-        itemCount: 6,
+    return GridView.builder(
+      shrinkWrap: true,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        childAspectRatio: 3,
+        crossAxisCount: 2,
+        crossAxisSpacing: 10.0,
+        mainAxisSpacing: 10.0,
       ),
+      physics: const NeverScrollableScrollPhysics(),
+      itemBuilder: (context, index) {
+        return _gridItemWidget(context);
+      },
+      itemCount: 6,
     );
   }
 }
 
-Widget _gridItem(BuildContext context) {
+Widget _gridItemWidget(BuildContext context) {
   return Container(
     padding: const EdgeInsets.all(4.0),
     decoration: BoxDecoration(
@@ -38,18 +36,18 @@ Widget _gridItem(BuildContext context) {
       children: [
         Expanded(
           flex: 1,
-          child: _albumArt(),
+          child: AlbumArtWidget(),
         ),
         Expanded(
           flex: 2,
-          child: _itemDetails("Title", context),
+          child: _itemDetailsWidget("Title", context),
         ),
       ],
     ),
   );
 }
 
-Widget _itemDetails(String title, BuildContext context, {String? subtitle}) {
+Widget _itemDetailsWidget(String title, BuildContext context, {String? subtitle}) {
   return Padding(
     padding: const EdgeInsets.only(left: 2.0),
     child: Column(
@@ -72,19 +70,6 @@ Widget _itemDetails(String title, BuildContext context, {String? subtitle}) {
               )
             : const SizedBox.shrink()
       ],
-    ),
-  );
-}
-
-Widget _albumArt() {
-  return ClipRRect(
-    borderRadius: const BorderRadius.all(
-      Radius.circular(12.0),
-    ),
-    child: Image.asset(
-      "assets/images/now_playing.png",
-      width: 46,
-      height: 46,
     ),
   );
 }

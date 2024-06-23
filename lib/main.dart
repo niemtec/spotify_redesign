@@ -3,8 +3,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:spotify_redesign/constants/constants.dart';
 import 'package:spotify_redesign/constants/icons.dart';
 import 'package:spotify_redesign/theme/theme.dart';
-import 'package:spotify_redesign/widgets/now_playing_bar/now_playing_bar.dart';
-import 'package:spotify_redesign/widgets/recents_grid/recents_grid.dart';
+import 'package:spotify_redesign/widgets/made_for_you/made_for_you_header_widget.dart';
+import 'package:spotify_redesign/widgets/now_playing_bar/now_playing_bar_widget.dart';
+import 'package:spotify_redesign/widgets/recents_grid/recents_grid_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -56,8 +57,9 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               _widgetOptions.elementAt(_selectedIndex),
-              RecentsGrid(),
-              NowPlayingBar(0.25),
+              RecentsGridWidget(),
+              MadeForYouHeaderWidget(),
+              NowPlayingBarWidget(0.25),
             ],
           ),
         ),

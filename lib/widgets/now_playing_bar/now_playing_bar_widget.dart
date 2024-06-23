@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:spotify_redesign/constants/constants.dart';
 import 'package:spotify_redesign/constants/icons.dart';
+import 'package:spotify_redesign/widgets/album_art_widget.dart';
 
-class NowPlayingBar extends StatefulWidget {
+class NowPlayingBarWidget extends StatefulWidget {
   final double progress;
-  const NowPlayingBar(this.progress, {super.key});
+  const NowPlayingBarWidget(this.progress, {super.key});
 
   @override
-  State<NowPlayingBar> createState() => _NowPlayingBarState();
+  State<NowPlayingBarWidget> createState() => _NowPlayingBarWidgetState();
 }
 
-class _NowPlayingBarState extends State<NowPlayingBar> {
+class _NowPlayingBarWidgetState extends State<NowPlayingBarWidget> {
   bool isPlaying = false;
   bool isInPlaylist = false;
 
@@ -48,26 +49,26 @@ class _NowPlayingBarState extends State<NowPlayingBar> {
               children: [
                 Expanded(
                   flex: 1,
-                  child: _nowPlayingAlbumArt(),
+                  child: AlbumArtWidget(),
                 ),
                 Expanded(
                   flex: 4,
-                  child: _nowPlayingDetails(),
+                  child: _nowPlayingDetailsWidget(),
                 ),
                 Expanded(
                   flex: 2,
-                  child: _nowPlayingCTAs(isPlaying, isInPlaylist),
+                  child: _nowPlayingCTAsWidget(isPlaying, isInPlaylist),
                 ),
               ],
             ),
-            _progressIndicator(widget.progress),
+            _progressIndicatorWidget(widget.progress),
           ],
         ),
       ),
     );
   }
 
-  Widget _nowPlayingCTAs(bool isPlaying, bool isInPlaylist) {
+  Widget _nowPlayingCTAsWidget(bool isPlaying, bool isInPlaylist) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
@@ -91,7 +92,7 @@ class _NowPlayingBarState extends State<NowPlayingBar> {
     );
   }
 
-  Widget _nowPlayingDetails() {
+  Widget _nowPlayingDetailsWidget() {
     return Padding(
       padding: const EdgeInsets.only(left: 6.0),
       child: Column(
@@ -112,23 +113,7 @@ class _NowPlayingBarState extends State<NowPlayingBar> {
     );
   }
 
-  Widget _nowPlayingAlbumArt() {
-    return Padding(
-      padding: const EdgeInsets.all(2.0),
-      child: ClipRRect(
-        borderRadius: const BorderRadius.all(
-          Radius.circular(6.0),
-        ),
-        child: Image.asset(
-          "assets/images/now_playing.png",
-          width: 46,
-          height: 46,
-        ),
-      ),
-    );
-  }
-
-  Widget _progressIndicator(double progress) {
+  Widget _progressIndicatorWidget(double progress) {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 4.0,
