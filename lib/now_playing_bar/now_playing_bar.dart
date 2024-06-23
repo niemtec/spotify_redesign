@@ -11,11 +11,26 @@ class NowPlayingBar extends StatefulWidget {
 }
 
 class _NowPlayingBarState extends State<NowPlayingBar> {
+  bool isPlaying = false;
+  bool isInPlaylist = false;
+
+  _toggleIsPlaying() {
+    setState(() {
+      isPlaying = !isPlaying;
+    });
+  }
+
+  _toggleIsInPlaylist() {
+    setState(() {
+      isInPlaylist = !isInPlaylist;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 72,
+      height: 64,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondaryContainer,
         borderRadius: const BorderRadius.all(
@@ -23,7 +38,7 @@ class _NowPlayingBarState extends State<NowPlayingBar> {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 2.0),
+        padding: const EdgeInsets.fromLTRB(6.0, 6.0, 6.0, 2.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -40,7 +55,7 @@ class _NowPlayingBarState extends State<NowPlayingBar> {
                 ),
                 Expanded(
                   flex: 2,
-                  child: _nowPlayingCTAs(),
+                  child: _nowPlayingCTAs(isPlaying, isInPlaylist),
                 ),
               ],
             ),
@@ -51,23 +66,23 @@ class _NowPlayingBarState extends State<NowPlayingBar> {
     );
   }
 
-  Widget _nowPlayingCTAs() {
+  Widget _nowPlayingCTAs(bool isPlaying, bool isInPlaylist) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         IconButton(
           padding: const EdgeInsets.all(0.0),
-          onPressed: () {},
+          onPressed: () => _toggleIsInPlaylist(),
           icon: SvgPicture.asset(
-            "assets/icons/Add to Playlist.svg",
+            isInPlaylist ? "assets/icons/Check-filled.svg" : "assets/icons/Add to Playlist.svg",
             height: Constants.iconSize,
           ),
         ),
         IconButton(
           padding: const EdgeInsets.all(0.0),
-          onPressed: () {},
+          onPressed: () => _toggleIsPlaying(),
           icon: SvgPicture.asset(
-            "assets/icons/Play Simple.svg",
+            isPlaying ? "assets/icons/Pause Simple.svg" : "assets/icons/Play Simple.svg",
             height: Constants.iconSize,
           ),
         )
@@ -105,8 +120,8 @@ class _NowPlayingBarState extends State<NowPlayingBar> {
         ),
         child: Image.asset(
           "assets/images/now_playing.png",
-          width: 48,
-          height: 48,
+          width: 46,
+          height: 46,
         ),
       ),
     );
@@ -115,10 +130,10 @@ class _NowPlayingBarState extends State<NowPlayingBar> {
   Widget _progressIndicator(double progress) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-        horizontal: 2.0,
+        horizontal: 4.0,
       ),
       child: SizedBox(
-        height: 4,
+        height: 2.0,
         child: LinearProgressIndicator(
           borderRadius: const BorderRadius.all(
             Radius.circular(10),
