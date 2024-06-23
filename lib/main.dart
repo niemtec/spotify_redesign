@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:spotify_redesign/constants.dart';
+import 'package:spotify_redesign/now_playing_bar/now_playing_bar.dart';
 import 'package:spotify_redesign/theme.dart';
 
 void main() {
@@ -46,8 +48,17 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _widgetOptions.elementAt(_selectedIndex),
+              NowPlayingBar(0.25),
+            ],
+          ),
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -104,7 +115,7 @@ Widget _navBarIcon(String iconName, {bool isFilled = false}) {
     padding: const EdgeInsets.only(bottom: 2.0),
     child: SvgPicture.asset(
       "assets/icons/$iconName${isFilled ? "-filled.svg" : ".svg"}",
-      height: 36.0,
+      height: Constants.iconSize,
     ),
   );
 }
