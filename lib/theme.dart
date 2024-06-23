@@ -20,16 +20,16 @@ class AppTheme {
   static const darkColorScheme = ColorScheme(
     brightness: Brightness.dark,
     primary: Color.fromRGBO(28, 215, 96, 1),
-    onPrimary: Colors.black,
+    onPrimary: Color.fromRGBO(17, 17, 17, 1.0),
     secondary: Color.fromRGBO(51, 56, 66, 1),
     onSecondary: Color.fromRGBO(137, 137, 137, 1),
     tertiary: Color.fromRGBO(224, 224, 224, 1),
-    onTertiary: Colors.black,
+    onTertiary: Color.fromRGBO(17, 17, 17, 1.0),
     error: Colors.red,
-    onError: Colors.black,
-    surfaceDim: AppColors.bgSecondary,
+    onError: Color.fromRGBO(17, 17, 17, 1.0),
+    surfaceDim: Color.fromRGBO(17, 17, 17, 1.0),
     onSurfaceVariant: AppColors.fgSecondary,
-    surface: Colors.black,
+    surface: Color.fromRGBO(17, 17, 17, 1.0),
     onSurface: Colors.white,
   );
 
