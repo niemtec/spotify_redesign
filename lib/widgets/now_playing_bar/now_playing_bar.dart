@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:spotify_redesign/constants/constants.dart';
+import 'package:spotify_redesign/constants/icons.dart';
 
 class NowPlayingBar extends StatefulWidget {
   final double progress;
@@ -74,7 +75,7 @@ class _NowPlayingBarState extends State<NowPlayingBar> {
           padding: const EdgeInsets.all(0.0),
           onPressed: () => _toggleIsInPlaylist(),
           icon: SvgPicture.asset(
-            isInPlaylist ? "assets/icons/Check-filled.svg" : "assets/icons/Add to Playlist.svg",
+            isInPlaylist ? AppIcons.checkFilled : AppIcons.playlist,
             height: Constants.iconSize,
           ),
         ),
@@ -82,7 +83,7 @@ class _NowPlayingBarState extends State<NowPlayingBar> {
           padding: const EdgeInsets.all(0.0),
           onPressed: () => _toggleIsPlaying(),
           icon: SvgPicture.asset(
-            isPlaying ? "assets/icons/Pause Simple.svg" : "assets/icons/Play Simple.svg",
+            isPlaying ? AppIcons.pauseSimple : AppIcons.playSimple,
             height: Constants.iconSize,
           ),
         )
