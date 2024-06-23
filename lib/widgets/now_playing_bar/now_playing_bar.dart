@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:spotify_redesign/constants.dart';
+import 'package:spotify_redesign/constants/constants.dart';
 
 class NowPlayingBar extends StatefulWidget {
   final double progress;
@@ -96,7 +96,7 @@ class _NowPlayingBarState extends State<NowPlayingBar> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             "Get Lucky (feat. Pharrell Williams and Nile Rodgers)",
             maxLines: 1,
             softWrap: false,

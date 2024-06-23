@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'colors.dart'; // Adjust the path to your actual file
-import 'text_styles.dart'; // Adjust the path to your actual file
+import '../constants/colors.dart'; // Adjust the path to your actual file
+import '../constants/text_styles.dart'; // Adjust the path to your actual file
 
 class AppTheme {
   // static const lightColorScheme = ColorScheme(
@@ -21,7 +21,8 @@ class AppTheme {
     brightness: Brightness.dark,
     primary: Color.fromRGBO(28, 215, 96, 1),
     onPrimary: Color.fromRGBO(17, 17, 17, 1.0),
-    secondary: Color.fromRGBO(51, 56, 66, 1),
+    secondaryContainer: Color.fromRGBO(51, 56, 66, 1),
+    secondary: Color.fromRGBO(32, 32, 32, 1),
     onSecondary: Color.fromRGBO(137, 137, 137, 1),
     tertiary: Color.fromRGBO(224, 224, 224, 1),
     onTertiary: Color.fromRGBO(17, 17, 17, 1.0),
