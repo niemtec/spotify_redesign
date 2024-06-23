@@ -1,16 +1,3 @@
 # spotify_redesign
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+A play in UI design based on [Juxtaposed's Spotify Redesign Video](https://www.youtube.com/watch?v=suhEIUapSJQ) and [Figma files](https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqa3ZRMlY3WDFZVjVTRjhMb19NeVA2ejRwU0hrZ3xBQ3Jtc0trc05IN0JRZ1dqczU3QVBUZ0hYOVpXZndGZUJsRUZFWVZLLXpoZU5yMzRBVWpGcDFjSmp6dG5URGo5Ul95OWNRYnhUN3RtOUozc2Y3OTItcjI1TUdtOVQ1SmU5Z2NpMkc0bVVjRWNjOTFpcGxCbFRXRQ&q=https%3A%2F%2Fwww.figma.com%2Fcommunity%2Ffile%2F1376999463181735262%2Fspotify-redesign&v=suhEIUapSJQ).
