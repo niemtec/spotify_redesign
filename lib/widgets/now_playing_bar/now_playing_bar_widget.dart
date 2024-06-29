@@ -30,16 +30,90 @@ class _NowPlayingBarWidgetState extends State<NowPlayingBarWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 64,
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.secondaryContainer,
-        borderRadius: const BorderRadius.all(
-          Radius.circular(12.0),
-        ),
+    return LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
+      bool isSmall = constraints.maxWidth > Constants.screenBreakpointSmall;
+      // bool isMedium = constraints.maxWidth > Constants.screenBreakpointMedium;
+      bool isLarge = constraints.maxWidth > Constants.screenBreakpointLarge;
+
+      if (isLarge) {
+        return _largeNowPlayingBarWidget();
+      }
+      return _smallNowPlayingBarWidget();
+    });
+  }
+
+  Widget _largeNowPlayingBarWidget() {
+    return _nowPlayingContainerWidget(
+      80,
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          IconButton(
+            padding: const EdgeInsets.all(0.0),
+            onPressed: () => _toggleIsPlaying(),
+            icon: SvgPicture.asset(
+              isPlaying ? AppIcons.pause : AppIcons.play,
+              height: Constants.iconSize * 1.2,
+            ),
+          ),
+          IconButton(
+            padding: const EdgeInsets.all(0.0),
+            onPressed: () => {},
+            icon: SvgPicture.asset(
+              AppIcons.prev,
+              height: Constants.iconSize,
+            ),
+          ),
+          IconButton(
+            padding: const EdgeInsets.all(0.0),
+            onPressed: () => {},
+            icon: SvgPicture.asset(
+              AppIcons.next,
+              height: Constants.iconSize,
+            ),
+          ),
+          IconButton(
+            padding: const EdgeInsets.all(0.0),
+            onPressed: () => {},
+            icon: SvgPicture.asset(
+              AppIcons.shuffle,
+              height: Constants.iconSize,
+            ),
+          ),
+          IconButton(
+            padding: const EdgeInsets.all(0.0),
+            onPressed: () => {},
+            icon: SvgPicture.asset(
+              AppIcons.loop,
+              height: Constants.iconSize,
+            ),
+          ),
+          Text("00:00"),
+          Container(width: 200, child: _progressIndicatorWidget(0.4)),
+          Text("4:45"),
+          IconButton(
+            padding: const EdgeInsets.all(0.0),
+            onPressed: () => {},
+            icon: SvgPicture.asset(
+              AppIcons.volume,
+              height: Constants.iconSize,
+            ),
+          ),
+          AlbumArtWidget(),
+          Container(width: 100, child: _nowPlayingDetailsWidget()),
+          _nowPlayingActionCTAsWidget(isInPlaylist, isExpanded: true),
+          VerticalDivider(
+            color: Colors.red,
+          ),
+        ],
       ),
-      child: Padding(
+    );
+  }
+
+  Widget _smallNowPlayingBarWidget() {
+    return _nowPlayingContainerWidget(
+      64,
+      Padding(
         padding: const EdgeInsets.fromLTRB(6.0, 6.0, 6.0, 2.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -68,10 +142,50 @@ class _NowPlayingBarWidgetState extends State<NowPlayingBarWidget> {
     );
   }
 
+  Widget _nowPlayingContainerWidget(double height, Widget child) {
+    return Container(
+        width: double.infinity,
+        height: height,
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.secondaryContainer,
+          borderRadius: const BorderRadius.all(
+            Radius.circular(12.0),
+          ),
+        ),
+        child: child);
+  }
+
   Widget _nowPlayingCTAsWidget(bool isPlaying, bool isInPlaylist) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
+        _nowPlayingActionCTAsWidget(isInPlaylist),
+        IconButton(
+          padding: const EdgeInsets.all(0.0),
+          onPressed: () => _toggleIsPlaying(),
+          icon: SvgPicture.asset(
+            isPlaying ? AppIcons.pauseSimple : AppIcons.playSimple,
+            height: Constants.iconSize,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _nowPlayingActionCTAsWidget(bool isInPlaylist,
+      {bool isLiked = false, bool isExpanded = false}) {
+    return Row(
+      children: [
+        isExpanded
+            ? IconButton(
+                padding: const EdgeInsets.all(0.0),
+                onPressed: () => {},
+                icon: SvgPicture.asset(
+                  isLiked ? AppIcons.likeFilled : AppIcons.like,
+                  height: Constants.iconSize,
+                ),
+              )
+            : const SizedBox.shrink(),
         IconButton(
           padding: const EdgeInsets.all(0.0),
           onPressed: () => _toggleIsInPlaylist(),
@@ -80,14 +194,36 @@ class _NowPlayingBarWidgetState extends State<NowPlayingBarWidget> {
             height: Constants.iconSize,
           ),
         ),
-        IconButton(
-          padding: const EdgeInsets.all(0.0),
-          onPressed: () => _toggleIsPlaying(),
-          icon: SvgPicture.asset(
-            isPlaying ? AppIcons.pauseSimple : AppIcons.playSimple,
-            height: Constants.iconSize,
-          ),
-        )
+        isExpanded
+            ? IconButton(
+                padding: const EdgeInsets.all(0.0),
+                onPressed: () => {},
+                icon: SvgPicture.asset(
+                  AppIcons.lyrics,
+                  height: Constants.iconSize,
+                ),
+              )
+            : const SizedBox.shrink(),
+        isExpanded
+            ? IconButton(
+                padding: const EdgeInsets.all(0.0),
+                onPressed: () => {},
+                icon: SvgPicture.asset(
+                  AppIcons.device,
+                  height: Constants.iconSize,
+                ),
+              )
+            : const SizedBox.shrink(),
+        isExpanded
+            ? IconButton(
+                padding: const EdgeInsets.all(0.0),
+                onPressed: () => {},
+                icon: SvgPicture.asset(
+                  AppIcons.more,
+                  height: Constants.iconSize,
+                ),
+              )
+            : const SizedBox.shrink(),
       ],
     );
   }
